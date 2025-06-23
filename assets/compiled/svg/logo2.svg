@@ -1,0 +1,13 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle Logo -->
+  <circle cx="30" cy="30" r="28" fill="#4e73df" stroke="#2e59d9" stroke-width="2"></circle>
+  
+  <!-- File Icon -->
+  <rect x="22" y="16" width="16" height="22" fill="#fff" rx="2"></rect>
+  <path d="M32 16 L38 22 L32 22 Z" fill="#4e73df"></path>
+
+  <!-- Text "Simarsip" -->
+  <text x="60" y="36" font-family="Arial, sans-serif" font-size="24" fill="#4e73df" font-weight="bold">
+    Simarsip
+  </text>
+</svg>
