@@ -32,7 +32,7 @@ if (isset($_GET['halaman'])) {
         case 'edit_lokasi':
             $edit_lokasi = true;
             break;
-        case 'edit_lokasi':
+        case 'delete_lokasi':
             $delete_lokasi = true;
             break;
         default:
@@ -45,6 +45,8 @@ if (isset($_GET['halaman'])) {
 
 <div id="sidebar">
     <div class="sidebar-wrapper active">
+
+        <!-- Mulai logo simarsip -->
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo" style="text-align: left;">
@@ -53,21 +55,23 @@ if (isset($_GET['halaman'])) {
                 </a>
                 </div>
 
-                <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
-                    <!-- Theme toggle code (tidak diubah) -->
-                </div>
+                <!-- Mulai Tombol silang -->
                 <div class="sidebar-toggler x">
                     <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
                 </div>
+                <!-- Akhir Tombol silang -->
             </div>
         </div>
+        <!-- Akhir logo simarsip -->
+
+        <!-- Mulai nama menu -->
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
 
                 <li class="sidebar-item <?= $beranda ? 'active' : '' ?>">
                     <a href="index.php?halaman=beranda" class="sidebar-link">
-                        <i class="bi bi-grid-fill"></i>
+                        <i class="bi bi-ui-checks-grid"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
@@ -77,14 +81,14 @@ if (isset($_GET['halaman'])) {
 
                     <li class="sidebar-item <?= $debitur || $tambah || $ubah ? 'active' : '' ?>">
                         <a href="index.php?halaman=debitur" class="sidebar-link">
-                            <i class="bi bi-person-fill"></i>
+                            <i class="bi bi-file-earmark-person"></i>
                             <span>Informasi Debitur</span>
                         </a>
                     </li>
 
                     <li class="sidebar-item <?= $lokasi || $edit_lokasi ? 'active' : '' ?>">
                         <a href="index.php?halaman=lokasi" class="sidebar-link">
-                            <i class="bi bi-folder-fill"></i>
+                            <i class="bi bi-file-earmark-lock"></i>
                             <span>Lokasi Penyimpanan</span>
                         </a>
                     </li>
@@ -92,5 +96,7 @@ if (isset($_GET['halaman'])) {
                 <?php endif; ?>
             </ul>
         </div>
+        <!-- Akhir nama menu -->
+
     </div>
 </div>

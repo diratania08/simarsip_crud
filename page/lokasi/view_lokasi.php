@@ -11,7 +11,7 @@ $totalLokasi = $dataLokasi['total'];
 ?>
 
 <style>
-  /* ✅ Memperindah tampilan tabel */
+  /* Memperindah tampilan tabel */
   #table {
     border-collapse: collapse;
     font-size: 14px;
@@ -27,12 +27,12 @@ $totalLokasi = $dataLokasi['total'];
     vertical-align: middle;
   }
 
-  /* ✅ Hover baris tabel */
+  /* Hover baris tabel */
   #table tbody tr:hover {
     background-color: #f9fbfc;
   }
 
-  /* ✅ Tombol lebih menarik */
+  /* Tombol lebih menarik */
   .btn-sm {
     font-size: 13px;
     padding: 6px 10px;
@@ -99,7 +99,7 @@ $totalLokasi = $dataLokasi['total'];
                                 <th>CIF</th>
                                 <th>Rekening</th>
                                 <th>Nama</th>
-                                <th>Usia Arsip (hari)</th>
+                                <th>Usia Arsip</th>
                                 <th>Ruangan</th>
                                 <th>Lemari</th>
                                 <th>Rak</th>
@@ -117,7 +117,13 @@ $totalLokasi = $dataLokasi['total'];
                                         <td><?= htmlspecialchars($data['cif']) ?></td>
                                         <td><?= htmlspecialchars($data['rekening']) ?></td>
                                         <td><?= htmlspecialchars($data['nama']) ?></td>
-                                        <td><?= htmlspecialchars($data['usia_arsip']) ?></td>
+                                        <?php
+                                            $tanggal_masuk = new DateTime("-{$data['usia_arsip']} days");
+                                            $hari_ini = new DateTime();
+                                            $selisih = $tanggal_masuk->diff($hari_ini);
+                                            $usia_format = "{$selisih->y} tahun {$selisih->m} bulan {$selisih->d} hari";
+                                        ?>
+                                        <td><?= $usia_format ?></td>
                                         <td><?= ucfirst($data['ruangan']) ?></td>
                                         <td><?= ucfirst($data['lemari']) ?></td>
                                         <td><?= ucfirst($data['rak']) ?></td>

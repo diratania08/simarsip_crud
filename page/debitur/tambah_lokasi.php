@@ -115,7 +115,7 @@ try {
 }
 ?>
 
-<!-- ✅ HTML Form -->
+<!-- HTML Form -->
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
@@ -132,7 +132,7 @@ try {
             <div class="card-body">
                 <?php if ($lokasiSudahAda): ?>
                     <div class="alert alert-warning">
-                        Lokasi untuk debitur <strong><?= htmlspecialchars($data['nama']) ?></strong> sudah terdaftar.
+                        Lokasi untuk debitur dengan CIF <strong><?= htmlspecialchars($data['cif']) ?></strong> sudah terdaftar.
                         Silakan update/hapus dari menu <strong>Lokasi Penyimpanan</strong>.
                     </div>
                 <?php else: ?>
@@ -196,7 +196,7 @@ try {
                             <button type="submit" class="btn btn-primary" name="submit">Simpan Lokasi</button>
                         </div>
 
-                        <!-- ✅ JavaScript untuk hide lemari/rak/baris -->
+                        <!-- JavaScript untuk hide lemari/rak/baris -->
                         <script>
                             const ruanganSelect = document.getElementById('ruangan');
                             const lemariField = document.getElementById('lemari-field');

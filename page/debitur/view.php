@@ -1,16 +1,26 @@
 <?php
 include "./function/connection.php";
 
+$result = mysqli_query($connection, "
+    UPDATE debitur 
+    SET 
+        tanggal_sekarang = CURDATE(),
+        usia_arsip = DATEDIFF(CURDATE(), tanggal_masuk)
+");
+
+if (!$result) {
+    die("Query gagal: " . mysqli_error($connection));
+}
+
 $query = mysqli_query($connection, "SELECT * FROM debitur");
 
 $countResult = mysqli_query($connection, "SELECT COUNT(*) AS total FROM debitur");
 $countRow = mysqli_fetch_assoc($countResult);
 $count = $countRow['total'];
-
 ?>
 
 <style>
-  /* ✅ Memperindah tampilan tabel */
+  /* Memperindah tampilan tabel */
   #table {
     border-collapse: collapse;
     font-size: 14px;
@@ -26,12 +36,12 @@ $count = $countRow['total'];
     vertical-align: middle;
   }
 
-  /* ✅ Hover baris tabel */
+  /* Hover baris tabel */
   #table tbody tr:hover {
     background-color: #f9fbfc;
   }
 
-  /* ✅ Tombol lebih menarik */
+  /* Tombol lebih menarik */
   .btn-sm {
     font-size: 13px;
     padding: 6px 10px;
@@ -116,7 +126,12 @@ $count = $countRow['total'];
                             <?php if ($query->num_rows > 0) : ?>
                                 <?php
                                 $i = 1;
-                                while ($data = mysqli_fetch_assoc($query)) : ?>
+                                while ($data = mysqli_fetch_assoc($query)) :
+                                    $tanggal_masuk = new DateTime($data['tanggal_masuk']);
+                                    $hari_ini = new DateTime();
+                                    $selisih = $tanggal_masuk->diff($hari_ini);
+                                    $usia_arsip = "{$selisih->y} tahun {$selisih->m} bulan {$selisih->d} hari";
+                                ?>
                                     <tr>
                                         <td><?= $i++ ?></td>
                                         <td><?= $data['cif'] ?></td>
@@ -127,14 +142,13 @@ $count = $countRow['total'];
                                         <td><?= $data['nominal'] ?></td>
                                         <td><?= $data['segmen'] ?></td>
                                         <td><?= $data['tanggal_masuk'] ?></td>
-                                        <td><?= $data['tanggal_sekarang'] ?></td>
-                                        <td><?= $data['usia_arsip'] ?></td>
+                                        <td><?= date('Y-m-d') ?></td>
+                                        <td><?= $usia_arsip ?></td>
                                         <td>
                                             <a href="index.php?halaman=ubah_debitur&id=<?= $data['id'] ?>" class="btn btn-sm btn-warning" style="display:block; margin-bottom:5px;">Update</a>
                                             <a href="index.php?halaman=tambah_lokasi&id=<?= $data['id'] ?>" class="btn btn-sm btn-primary" style="display:block; margin-bottom:5px;">Tambah Lokasi</a>
                                             <a href="index.php?halaman=hapus_debitur&id=<?= $data['id'] ?>" class="btn btn-sm btn-danger" id="btn-hapus" style="display:block;" onclick="confirmModal(event)">Hapus</a>
                                         </td>
-
                                     </tr>
                                 <?php endwhile ?>
                             <?php endif ?>
@@ -147,11 +161,11 @@ $count = $countRow['total'];
 </div>
 <script src="./assets/extensions/simple-datatables/umd/simple-datatables.js"></script>
 <script>
-  // ✅ Inisialisasi tanpa fitur sorting
+  // Inisialisasi tanpa fitur sorting
   const table = document.querySelector("#table");
   const dataTable = new simpleDatatables.DataTable(table, {
     searchable: true,   // tetap bisa cari
     fixedHeight: true,
-    sortable: false     // ❌ Nonaktifkan sorting
+    sortable: false     // Nonaktifkan sorting
   });
 </script>

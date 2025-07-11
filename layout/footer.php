@@ -7,7 +7,7 @@
             <p>
                 Crafted with
                 <img src="https://ars.ac.id/media/logo.png" alt="Logo ARS" width="20">
-                by <a href="https://saugi.me">AdamIndira SI.4B </a>
+                by <a href="https://github.com/diratania08/simarsip_crud">AdamIndira SI.4B </a>
             </p>
         </div>
     </div>

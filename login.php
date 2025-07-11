@@ -2,11 +2,13 @@
 <html lang="en">
 
 <head>
+    <!-- Mulai tampilan tab browser -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
 
     <link rel="shortcut icon" href="assets/compiled/svg/judul.ico" type="image/x-icon"> 
+    <!-- Akhir tampilan tab browser -->
 
     <link rel="stylesheet" href="./assets/compiled/css/app.css" />
     <link rel="stylesheet" href="./assets/compiled/css/app-dark.css" />
@@ -23,7 +25,7 @@
     if (isset($_SESSION['nama'])) {
         header('Location: index.php?halaman=beranda');
     }
-
+    
     try {
         if (isset($_POST['login'])) {
             $username = htmlspecialchars($_POST['username']);
@@ -77,7 +79,7 @@
                 timer: 2000,
                 timerProgressBar: true,
             }).then(() => {
-                window.location.href = 'index.php?halaman=login';
+                window.location.href = 'register.php';
             })
             </script>
             ";
@@ -105,9 +107,9 @@
         <div class="row h-100">
             <div class="col-lg-5 col-12">
                 <div id="auth-left">
-                    <h1 class="auth-title">Masuk.</h1>
+                    <h1 class="auth-title">Login</h1>
                     <p class="auth-subtitle mb-5">
-                        Masuk dengan data yang sudah anda daftarkan pada halaman register.
+                        Masukanlah data yang sudah anda daftarkan sebelumnya di halaman register.
                     </p>
 
                     <form action="" method="post">
@@ -120,7 +122,7 @@
                         <div class="form-group position-relative has-icon-left mb-4">
                             <input type="password" class="form-control form-control-xl" placeholder="Password" name="password" required />
                             <div class="form-control-icon">
-                                <i class="bi bi-shield-lock"></i>
+                                <i class="bi bi-lock"></i>
                             </div>
                         </div>
                         <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" name="login">
@@ -129,8 +131,8 @@
                     </form>
                     <div class="text-center mt-5 text-lg fs-4">
                         <p class="text-gray-600">
-                            Belom punya akun?
-                            <a href="register.php" class="font-bold">Daftar</a>.
+                            Belum punya akun?
+                            <a href="register.php" class="font-bold">Register</a>.
                         </p>
                     </div>
                 </div>
